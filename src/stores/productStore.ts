@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import type { Product } from "@/types/product";
+import type { IProduct } from "@/types/product";
 import { fetchProducts, fetchProductById } from "@/services/api";
 
 export const useProductStore = defineStore("product", () => {
-  const items = ref<Product[]>([]);
+  const items = ref<IProduct[]>([]);
   const loading = ref(false);
   const error = ref<string | null>(null);
 
