@@ -4,9 +4,7 @@
       <h1>Products</h1>
       <div class="controls">
         <DarkToggle />
-        <div class="cart-info" @click="goCart">
-          🛒 {{ cart.cartItems.length }}
-        </div>
+        <div class="cart-info" @click="goCart">🛒 {{ cart.itemCount }}</div>
       </div>
     </header>
 

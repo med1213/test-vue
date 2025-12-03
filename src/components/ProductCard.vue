@@ -17,9 +17,9 @@
 
 <script setup lang="ts">
 import { useCartStore } from "@/stores/cartStore";
-import type { Product } from "@/types/product";
+import type { IProduct } from "@/types/product";
 
-const props = defineProps<{ product: Product }>();
+const props = defineProps<{ product: IProduct }>();
 const cart = useCartStore();
 
 function formatPrice(val: number) {
