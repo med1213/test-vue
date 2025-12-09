@@ -2,7 +2,7 @@
   <div class="product-card">
     <router-link :to="`/product/${product.id}`">
       <div class="img-wrap">
-        <img :src="product.image" :alt="product.name" />
+        <img :alt="product.name" :src="product.image" />
       </div>
       <h3 class="name">{{ product.name }}</h3>
     </router-link>
@@ -16,8 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import { useCartStore } from "@/stores/cartStore";
 import type { IProduct } from "@/types/product";
+import { useCartStore } from "@/stores/cartStore";
 
 const props = defineProps<{ product: IProduct }>();
 const cart = useCartStore();

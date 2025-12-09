@@ -21,7 +21,9 @@ declare module 'vue-router/auto-routes' {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
     '/CartPage': RouteRecordInfo<'/CartPage', '/CartPage', Record<never, never>, Record<never, never>>,
     '/HomePage': RouteRecordInfo<'/HomePage', '/HomePage', Record<never, never>, Record<never, never>>,
+    '/monitoring/': RouteRecordInfo<'/monitoring/', '/monitoring', Record<never, never>, Record<never, never>>,
     '/ProductDetail': RouteRecordInfo<'/ProductDetail', '/ProductDetail', Record<never, never>, Record<never, never>>,
+    '/view/': RouteRecordInfo<'/view/', '/view', Record<never, never>, Record<never, never>>,
   }
 
   /**
@@ -47,8 +49,16 @@ declare module 'vue-router/auto-routes' {
       routes: '/HomePage'
       views: never
     }
+    'src/pages/monitoring/index.vue': {
+      routes: '/monitoring/'
+      views: never
+    }
     'src/pages/ProductDetail.vue': {
       routes: '/ProductDetail'
+      views: never
+    }
+    'src/pages/view/index.vue': {
+      routes: '/view/'
       views: never
     }
   }
