@@ -89,6 +89,7 @@ async function checkAPI(api) {
       name: api.name,
       url: api.url,
       status: "UP",
+      method: api.method,
       code: response.status,
       time: time + "ms",
       error: "",
@@ -101,6 +102,7 @@ async function checkAPI(api) {
       name: api.name,
       url: api.url,
       status: "DOWN",
+      method: api.method,
       code: error.response?.status || "N/A",
       time: time + "ms",
       error: error.message,
@@ -161,6 +163,7 @@ onMounted(() => {
           <th>Name</th>
           <th>URL</th>
           <th>Status</th>
+          <th>Method</th>
           <th>HTTP Code</th>
           <th>Time</th>
           <th>Error</th>
@@ -172,6 +175,7 @@ onMounted(() => {
           <td>{{ i.name }}</td>
           <td>{{ i.url }}</td>
           <td :class="i.status === 'UP' ? 'up' : 'down'">{{ i.status }}</td>
+          <td>{{ i.method }}</td>
           <td>{{ i.code }}</td>
           <td>{{ i.time }}</td>
           <td>{{ i.error }}</td>

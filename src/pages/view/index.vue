@@ -20,7 +20,6 @@ import type { ApexOptions } from "apexcharts";
 
 const date = new Date();
 const formatDate = dayjs(date).format("DD/MM/YYYY HH:MM");
-console.log(formatDate);
 
 const series = computed(() => [
   {
