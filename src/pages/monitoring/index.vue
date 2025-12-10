@@ -7,6 +7,7 @@ const BASE_URL = "https://fakestoreapi.com";
 const apiList = [
   // Fake DOWN API
   { name: "Fake Error API", method: "GET", url: "/error-test-123" },
+  { name: "Wrong", method: "GET", url: "/wrong" },
 
   {
     name: "Auth Login",
@@ -116,6 +117,10 @@ async function runMonitoring() {
 
   for (const api of apiList) {
     const r = await checkAPI(api);
+
+    if (r.status === "DOWN") {
+      await sendTelegramAlert(r);
+    }
     tempResults.push(r);
   }
 
@@ -144,9 +149,34 @@ const mostUsed = () => {
   return url;
 };
 
+async function sendTelegramAlert(apiInfo) {
+  const BOT_TOKEN = "8191427224:AAGgJU5CF_LH10YBdKBfCBsnuH97uHAn7tg";
+  const CHAT_ID = "5665012181"; // numeric, example: 123456789
+
+  const text = `
+⚠️ API DOWN ALERT
+Name: ${apiInfo.name}
+URL: ${apiInfo.url}
+Method: ${apiInfo.method}
+Status Code: ${apiInfo.code}
+Time: ${apiInfo.time}
+Error: ${apiInfo.error}
+  `;
+
+  try {
+    await axios.post(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      chat_id: CHAT_ID,
+      text,
+    });
+    console.log("Telegram alert sent.");
+  } catch (err) {
+    console.error("Telegram error:", err);
+  }
+}
+
 onMounted(() => {
   runMonitoring();
-  setInterval(runMonitoring, 5000); // auto refresh every 5 seconds
+  setInterval(runMonitoring, 10000); // auto refresh every 5 seconds
 });
 </script>
 
